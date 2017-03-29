@@ -1,0 +1,25 @@
+{
+  "name": "shields-tests",
+  "description": "Test suite for shields.io",
+  "version": "1.0.1",
+  "license": "CC0-1.0",
+  "scripts": {
+    "test:services": "mocha test-services.spec.js",
+    "lint": "semistandard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:paulmelnikow/shields-tests.git"
+  },
+  "devDependencies": {
+    "semistandard": "^10.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "mocha": "^3.2.0",
+    "portfinder": "^1.0.13"
+  },
+  "semistandard": {
+    "env": [ "mocha" ]
+  }
+}
