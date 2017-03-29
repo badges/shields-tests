@@ -1,5 +1,17 @@
 'use strict';
 
+// Usage:
+//
+// let server, port, baseUri;
+// before('Start running the server', function () {
+//   return serverHelpers.start().then(result => {
+//     ({ server, port } = result);
+//     baseUri = `http://127.0.0.1:${port}`;
+//   });
+// });
+// after('Shut down the server', function () { serverHelpers.stop(server); });
+//
+
 const cproc = require('child_process');
 const portfinder = require('portfinder');
 
@@ -8,7 +20,7 @@ const portfinder = require('portfinder');
  * selected automatically.
  *
  * @param {Number} port number (optional)
- * @return {Promise<Object>} { server: {server instance}, port: {Number} }
+ * @return {Promise<Object>} { server: {Object}, port: {Number} }
  */
 // Return via promise { server, port }
 const start = (port) => {
@@ -32,6 +44,12 @@ const start = (port) => {
   }));
 };
 
+/**
+ * Stop the server.
+ *
+ * @param {Object} server instance
+ * @return {Promise<null>}
+ */
 const stop = (server) => new Promise((resolve, reject) => {
   server.kill();
   server.on('exit', () => { resolve(); });

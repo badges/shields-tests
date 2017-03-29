@@ -5,6 +5,7 @@
   "license": "CC0-1.0",
   "scripts": {
     "test:services": "mocha test-services.spec.js",
+    "prepush": "npm run lint",
     "lint": "semistandard"
   },
   "repository": {
@@ -12,14 +13,18 @@
     "url": "git@github.com:paulmelnikow/shields-tests.git"
   },
   "devDependencies": {
+    "husky": "^0.13.3",
     "semistandard": "^10.0.0"
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "is-svg": "^2.1.0",
     "mocha": "^3.2.0",
     "portfinder": "^1.0.13"
   },
   "semistandard": {
-    "env": [ "mocha" ]
+    "env": [
+      "mocha"
+    ]
   }
 }
