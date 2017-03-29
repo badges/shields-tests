@@ -13,6 +13,8 @@ Features
 
     SHIELDS_DIR=/path/to/shields npm run test:services
 
+Note: This test will hit all the external services.
+
 
 License
 -------
