@@ -18,6 +18,10 @@ and doesn't record anything. It's useful for developing new tests.
 
     SHIELDS_DIR=/path/to/shields npm run test:vendor
 
+There is [a bug it seems][bug], that prevents this from working correctly when
+some fixtures are already recorded for the same hostname. To work around that,
+delete `fixtures.json` and try again.
+
 When you have written your tests, record the http calls:
 
     NOCK_BACK_MODE=record SHIELDS_DIR=/path/to/shields npm run test:vendor
@@ -31,6 +35,7 @@ and raise errors for any unexpected calls.
 > `describe.only`.
 
 [Nock Back]: https://github.com/node-nock/nock#nock-back
+[bug]: https://github.com/node-nock/nock/issues/870
 
 
 ### Test that the service endpoints in try.html return valid SVG
