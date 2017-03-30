@@ -1,15 +1,11 @@
-// Run this file with `mocha`.
-
 'use strict';
 
-const assert = require('assert');
 const fs = require('fs');
 const url = require('url');
 const cheerio = require('cheerio');
-const fetch = require('node-fetch');
-const isSvg = require('is-svg');
 const config = require('./config');
 const serverHelpers = require('./in-process-server-helpers');
+const Client = require('./client');
 
 const getImageSources = htmlSource => {
   const $ = cheerio.load(htmlSource);
@@ -35,19 +31,16 @@ describe('Service endpoints in try.html return valid SVG', function () {
   });
   after('Shut down the server', function () { serverHelpers.stop(server); });
 
+  let client;
+  before(function () { client = new Client(baseUri); });
+
   const testSources = getServerImages().filter(src => src !== 'logo.svg');
+  // const testSources = getServerImages().filter(src => src !== 'logo.svg').slice(0, 1);
 
   testSources.forEach(src => {
     it(src, function () {
       this.timeout(5000);
-
-      return fetch(baseUri + src)
-        .then(res => {
-          assert.equal(res.status, 200);
-          assert.equal(res.headers.get('content-type'), 'image/svg+xml;charset=utf-8');
-          return res.text();
-        })
-        .then(text => { assert(isSvg(text), 'is valid SVG'); });
+      return client.fetchSvg(src);
     });
   });
 });

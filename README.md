@@ -11,7 +11,7 @@ Features
 
 ### Test that the service endpoints in try.html return valid SVG
 
-    SHIELDS_DIR=/path/to/shields npm run test:services
+    SHIELDS_DIR=/path/to/shields npm run test:basic
 
 Note: This test will hit all the external services.
 
