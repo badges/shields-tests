@@ -12,36 +12,32 @@
 // after('Shut down the server', function () { serverHelpers.stop(server); });
 //
 
-const cproc = require('child_process');
 const portfinder = require('portfinder');
+const pify = require('pify');
+const config = require('./config');
 
 /**
  * Start the server. If a port number is not provided, an available port is
  * selected automatically.
+ *
+ * Note: Because of the way Shields works, you can only call this once per
+ * node process. Once you call stop(), the game is over.
  *
  * @param {Number} port number (optional)
  * @return {Promise<Object>} { server: {Object}, port: {Number} }
  */
 // Return via promise { server, port }
 const start = (port) => {
-  const portPromise = port
-    ? Promise.resolve(port)
-    : portfinder.getPortPromise();
+  const getPort = port ? Promise.resolve(port) : portfinder.getPortPromise();
 
-  return portPromise.then(port => new Promise((resolve, reject) => {
-    const server = cproc.spawn('node', ['test-server.js', port]);
+  return getPort.then(port => {
+    // Oy!
+    process.argv = ['', '', port, 'localhost'];
 
-    const onData = data => {
-      if (data.toString().indexOf('ready') >= 0) {
-        server.stdout.removeListener('data', onData);
-        resolve({ server, port });
-      }
-    };
+    const server = require(config.serverPath);
 
-    server.stdout.on('data', onData);
-    server.stderr.on('data', data => { console.log('' + data); });
-    server.on('error', err => { reject(err); });
-  }));
+    return { server, port };
+  });
 };
 
 /**
@@ -50,10 +46,7 @@ const start = (port) => {
  * @param {Object} server instance
  * @return {Promise<null>}
  */
-const stop = (server) => new Promise((resolve, reject) => {
-  server.kill();
-  server.on('exit', () => { resolve(); });
-});
+const stop = (server) => server ? pify(server.close.bind(server)) : Promise.resolve();
 
 module.exports = {
   start,
