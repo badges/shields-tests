@@ -19,7 +19,12 @@ const before = function (dirname) {
       { afterRecord: scopes => scopes.filter(s => s.scope !== baseUri) },
       nockDone => {
         context.nockDone = nockDone;
-        nock.enableNetConnect('127.0.0.1');
+
+        // Make sure we can reach the shields server.
+        if (nockBack.currentMode === 'lockdown') {
+          // nock.enableNetConnect('127.0.0.1');
+        }
+
         resolve();
       });
   });
