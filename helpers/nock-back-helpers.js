@@ -22,7 +22,7 @@ const before = function (dirname) {
 
         // Make sure we can reach the shields server.
         if (nockBack.currentMode === 'lockdown') {
-          // nock.enableNetConnect('127.0.0.1');
+          nock.enableNetConnect('127.0.0.1');
         }
 
         resolve();
@@ -35,6 +35,8 @@ const after = function () {
 
   return () => {
     context.nockDone();
+
+    nock.cleanAll();
   };
 };
 

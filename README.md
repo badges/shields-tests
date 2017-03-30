@@ -38,6 +38,12 @@ and raise errors for any unexpected calls.
 [bug]: https://github.com/node-nock/nock/issues/870
 
 
+### Generate coverage reports
+
+    SHIELDS_DIR=/path/to/shields npm run test:vendor:coverage
+    opn coverage/lcov-report/index.html
+
+
 ### Test that the service endpoints in try.html return valid SVG
 
     SHIELDS_DIR=/path/to/shields npm run test:basic

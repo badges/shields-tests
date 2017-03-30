@@ -6,6 +6,7 @@
   "scripts": {
     "test:basic": "mocha test-basic.spec.js",
     "test:vendor": "mocha 'vendor/**/*spec.js'",
+    "test:vendor:coverage": "istanbul cover --root $SHIELDS_DIR _mocha 'vendor/**/*spec.js'",
     "prepush": "npm run lint",
     "lint": "semistandard"
   },
@@ -20,6 +21,7 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "is-svg": "^2.1.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nock": "^9.0.11",
     "pify": "^2.3.0",
