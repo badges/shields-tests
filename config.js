@@ -8,5 +8,6 @@ if (!process.env.SHIELDS_DIR) {
 }
 
 module.exports = {
-  serverPath: path.join(process.env.SHIELDS_DIR, 'server.js')
+  serverPath: path.join(process.env.SHIELDS_DIR, 'server.js'),
+  tryHtmlPath: path.join(process.env.SHIELDS_DIR, 'try.html')
 };
