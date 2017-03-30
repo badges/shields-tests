@@ -14,7 +14,7 @@
 
 const portfinder = require('portfinder');
 const pify = require('pify');
-const config = require('./config');
+const config = require('../config');
 
 /**
  * Start the server. If a port number is not provided, an available port is
@@ -46,7 +46,13 @@ const start = (port) => {
  * @param {Object} server instance
  * @return {Promise<null>}
  */
-const stop = (server) => server ? pify(server.close.bind(server)) : Promise.resolve();
+const stop = (server) => {
+  if (server && server.close) {
+    return pify(server.close.bind(server));
+  } else {
+    return Promise.resolve();
+  }
+}
 
 module.exports = {
   start,

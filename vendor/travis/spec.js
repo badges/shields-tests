@@ -4,8 +4,8 @@
 
 const assert = require('assert');
 const nock = require('nock');
-const serverHelpers = require('../../in-process-server-helpers');
-const Client = require('../../client');
+const serverHelpers = require('../../helpers/in-process-server-helpers');
+const Client = require('../../helpers/client');
 const nockBack = nock.back;
 
 describe('Service endpoints', function () {

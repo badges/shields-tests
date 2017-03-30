@@ -4,8 +4,8 @@ const fs = require('fs');
 const url = require('url');
 const cheerio = require('cheerio');
 const config = require('./config');
-const serverHelpers = require('./in-process-server-helpers');
-const Client = require('./client');
+const serverHelpers = require('./helpers/in-process-server-helpers');
+const Client = require('./helpers/client');
 
 const getImageSources = htmlSource => {
   const $ = cheerio.load(htmlSource);
