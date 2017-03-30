@@ -5,6 +5,7 @@
   "license": "CC0-1.0",
   "scripts": {
     "test:basic": "mocha test-basic.spec.js",
+    "test:vendor": "mocha 'vendor/**/*spec.js'",
     "prepush": "npm run lint",
     "lint": "semistandard"
   },

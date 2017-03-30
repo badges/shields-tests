@@ -52,7 +52,7 @@ const stop = (server) => {
   } else {
     return Promise.resolve();
   }
-}
+};
 
 module.exports = {
   start,
