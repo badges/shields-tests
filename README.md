@@ -51,6 +51,16 @@ and raise errors for any unexpected calls.
 Note: This test will hit all the external services.
 
 
+### Developer convenience
+
+Start a shields server on port 1111:
+
+    SHIELDS_DIR/path/to/shields npm run start
+
+> Pro tip: If you're developing regularly, set `SHIELDS_DIR` in your shell
+> startup files.
+
+
 License
 -------
 

@@ -8,6 +8,7 @@
     "test:vendor": "mocha 'vendor/**/*spec.js'",
     "test:vendor:coverage": "istanbul cover --root $SHIELDS_DIR _mocha 'vendor/**/*spec.js'",
     "test:vendor:coverage:open": "npm run test:vendor:coverage && opn coverage/lcov-report/index.html",
+    "start": "node $SHIELDS_DIR/server.js 1111 localhost",
     "prepush": "npm run lint",
     "lint": "semistandard"
   },
