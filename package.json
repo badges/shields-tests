@@ -7,6 +7,7 @@
     "test:basic": "mocha test-basic.spec.js",
     "test:vendor": "mocha 'vendor/**/*spec.js'",
     "test:vendor:coverage": "istanbul cover --root $SHIELDS_DIR _mocha 'vendor/**/*spec.js'",
+    "test:vendor:coverage:open": "npm run test:vendor:coverage && opn coverage/lcov-report/index.html",
     "prepush": "npm run lint",
     "lint": "semistandard"
   },
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "husky": "^0.13.3",
+    "opn-cli": "^3.1.0",
     "semistandard": "^10.0.0"
   },
   "dependencies": {

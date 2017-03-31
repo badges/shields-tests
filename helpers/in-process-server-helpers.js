@@ -27,7 +27,7 @@ const config = require('../config');
  * @return {Promise<Object>} { server: {Object}, port: {Number} }
  */
 // Return via promise { server, port }
-const start = (port) => {
+const start = function (port) {
   const getPort = port ? Promise.resolve(port) : portfinder.getPortPromise();
 
   return getPort.then(port => {

@@ -9,22 +9,26 @@ class Client {
   }
 
   // Fetch a resource and ensure it is valid JSON.
-  fetchJson (path) {
+  fetchJson (path, expectedStatusCode) {
+    expectedStatusCode = expectedStatusCode || 200;
+
     const uri = url.resolve(this.baseUri, path);
 
     return fetch(uri).then(res => {
-      assert.equal(res.status, 200);
+      assert.equal(res.status, expectedStatusCode);
       assert.equal(res.headers.get('content-type'), 'application/json');
       return res.json();
     });
   }
 
   // Fetch a resource and ensure it is valid SVG.
-  fetchSvg (path) {
+  fetchSvg (path, expectedStatusCode) {
+    expectedStatusCode = expectedStatusCode || 200;
+
     const uri = url.resolve(this.baseUri, path);
 
     return fetch(uri).then(res => {
-      assert.equal(res.status, 200);
+      assert.equal(res.status, expectedStatusCode);
       assert.equal(res.headers.get('content-type'), 'image/svg+xml;charset=utf-8');
       return res.text();
     })

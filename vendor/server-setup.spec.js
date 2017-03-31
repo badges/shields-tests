@@ -3,6 +3,8 @@ const Client = require('../helpers/client');
 
 let server;
 before('Start the server', function () {
+  this.timeout(5000);
+
   return serverHelpers.start().then(result => {
     const baseUri = `http://127.0.0.1:${result.port}`;
 
