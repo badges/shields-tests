@@ -8,6 +8,7 @@
     "test:vendor": "mocha 'vendor/**/*spec.js'",
     "test:vendor:coverage": "istanbul cover --root $SHIELDS_DIR _mocha 'vendor/**/*spec.js'",
     "test:vendor:coverage:open": "npm run test:vendor:coverage && opn coverage/lcov-report/index.html",
+    "test:vendor-take-2": "mocha 'vendor-take-2/main.spec.js'",
     "start": "node $SHIELDS_DIR/server.js 1111 localhost",
     "prepush": "npm run lint",
     "lint": "semistandard"
@@ -23,6 +24,8 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "glob": "^7.1.1",
+    "icedfrisby": "git+https://github.com/paulmelnikow/IcedFrisby.git#80e13f78a68fd0e7ea853a4439a4bba14533a7cb",
     "is-svg": "^2.1.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",

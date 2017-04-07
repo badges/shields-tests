@@ -9,6 +9,33 @@ Experimental test suite for [Shields][].
 Features
 --------
 
+### Test vendor services, take 2
+
+These tests use [IcedFrisby][], [Joi][] (which is bundled with IcedFrisby),
+[Nock][], and a plugin that adds an `.intercept()` method, for concise nock
+support within IcedFrisby.
+
+Create a `shields` symlink in the root of the project.
+
+Then, to run the tests:
+
+    npm run test:vendor-take-2
+
+Depends on:
+
+ - https://github.com/badges/shields/commit/3febfe234ed2f9b4932da4d6bcaa54a18bd02ce7
+ - https://github.com/paulmelnikow/shields/commit/4f236e8afc955a28e057b4cc8d6673ab9d2e94f0
+
+Also depends on these two PRs in IcedFrisby:
+
+ - https://github.com/MarkHerhold/IcedFrisby/pull/26
+ - https://github.com/MarkHerhold/IcedFrisby/pull/28
+
+[IcedFrisby]: https://github.com/MarkHerhold/IcedFrisby/
+[Joi]: https://github.com/hapijs/joi
+[Nock]: https://github.com/node-nock/nock
+
+
 ### Test vendor services
 
 These tests use [Nock Back][].
