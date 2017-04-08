@@ -29,6 +29,7 @@ class ServiceTester {
     return spec;
   }
 
+  // Queue up the tests.
   toss () {
     const specs = this.specs;
 
